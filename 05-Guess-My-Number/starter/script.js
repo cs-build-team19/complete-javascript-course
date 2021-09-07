@@ -19,12 +19,15 @@ let highscore = 0;
 const displayMessage = (message) => {
     document.querySelector('.message').textContent = message
 }
+const displayScore = (score) => {
+    document.querySelector('.score').textContent = score
+}
 
 /* Code chakkenge 1 DOM/Event handlser */
 
 // resets the game(play again button function)
 document.querySelector('.again').addEventListener('click', function() {
-    score = 5;
+    displayScore(5)
     coverage = Math.trunc(Math.random() * 6) + 1;
     document.querySelector('body').style.backgroundColor = '#222';
     // document.querySelector('.message').textContent = 'Pick a coverage.';
@@ -39,7 +42,8 @@ document.querySelector('.check').addEventListener('click', function() {
 
     // if no coveage is picked
     if(!guess) {
-        document.querySelector('.message').textContent = 'Pick a coverage.';
+        // document.querySelector('.message').textContent = 'Pick a coverage.';
+        displayMessage('Pick a Coverage.')
 
     // if correct coverage is picked
     } else if(guess === coverage) {
@@ -47,7 +51,8 @@ document.querySelector('.check').addEventListener('click', function() {
             // document.querySelector('.message').textContent = 'Correct!';
             displayMessage('Correct!')
             score++
-            document.querySelector('.score').textContent = score;
+            // document.querySelector('.score').textContent = score;
+            displayScore(score)
             document.querySelector('body').style.backgroundColor = '#60b347';
             document.querySelector('.number').textContent = coverage;
             document.querySelector('.number').style.width = '30rem'
@@ -59,7 +64,8 @@ document.querySelector('.check').addEventListener('click', function() {
         } else {
             //  document.querySelector('.message').textContent = 'Study!';
             displayMessage('Study!')
-             document.querySelector('.score').textContent = 0;
+            //  document.querySelector('.score').textContent = 0;
+            displayScore(0)
         }
 
     // if incorrect coverage is picked
@@ -68,11 +74,13 @@ document.querySelector('.check').addEventListener('click', function() {
             // document.querySelector('.message').textContent = 'Not the coverage!';
             displayMessage('Not the coverage!')
             score--
-            document.querySelector('.score').textContent = score;  
+            // document.querySelector('.score').textContent = score;  
+            displayScore(score)
         } else {
             // document.querySelector('.message').textContent = 'Study!'
             displayMessage('Study!')
-            document.querySelector('.score').textContent = 0;
+            // document.querySelector('.score').textContent = 0;
+            displayScore(0)
         }
     }
 })
